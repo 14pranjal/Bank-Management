@@ -37,7 +37,8 @@ class Bank:
             "PHONE": int(input("Phone Number: ")),
             "GENDER": input("Gender: "),
             "Pin": int(input("Pin (4 digits): ")),
-            "Balance": 0
+            "Balance": 0,
+            "history": []
         }
         if info['Age'] < 18:
             print("Sorry, you cannot create an account (must be 18+)")
@@ -64,6 +65,7 @@ class Bank:
             elif amount > 20000:
                 print("Cannot deposit more than 20000 Rs")
             else:
+                user_data[0]['history'].append(f"Deposited {amount} Rs")
                 user_data[0]['Balance'] += amount
                 Bank.__updatedata()
                 print("Amount deposited successfully")
@@ -82,6 +84,7 @@ class Bank:
             elif amount > user_data[0]["Balance"]:
                 print("Insufficient balance")
             else:
+                user_data[0]['history'].append(f"Withdrew {amount} Rs")
                 user_data[0]['Balance'] -= amount
                 Bank.__updatedata()
                 print("Amount withdrawn successfully")
@@ -131,6 +134,22 @@ class Bank:
         for i in Bank.data:
             print(i)
 
+    def bank_statement(self):
+        account_no = input("Account no: ")
+        pin = int(input("Pin: "))
+        user_data = [i for i in Bank.data if i["AccountNo"] == account_no and i['Pin'] == pin]
+
+        if not user_data:
+            print("No such user found")
+        else:
+            print("Transaction History:")
+            for record in user_data[0]['history']:
+                print(record)
+            print(f"Current Balance: {user_data[0]['Balance']} Rs")
+
+
+
+
     def Delete_account(self):
         account_no = input("Account no: ")
         pin = int(input("Pin: "))
@@ -154,7 +173,9 @@ Press the following for your task:
 6 - Delete account
 7 - Delete ALL data
 8 - Show ALL data
-0 - Exit
+9 - Bank statement
+10 - trsnsfer money (coming soon)
+      0 - Exit
 """)
 
 user = Bank()
@@ -176,6 +197,8 @@ elif check == "7":
     user.delete_All_data()
 elif check == "8":
     user.show_all_data()
+elif check == "9":
+    user.bank_statement()
 elif check == "0":
     exit()
 else:

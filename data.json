@@ -7,6 +7,20 @@
         "PHONE": 2323232323,
         "GENDER": "m",
         "Pin": 2323,
-        "Balance": 0
+        "Balance": 100
+    },
+    {
+        "Name": "mamd",
+        "Age": 22,
+        "Email": "sdfg@d.dom",
+        "AccountNo": "Z41C45Cy8a",
+        "PHONE": 2324232322,
+        "GENDER": "m",
+        "Pin": 2323,
+        "Balance": 1800,
+        "history": [
+            "Deposited 2000 Rs",
+            "Withdrew 200 Rs"
+        ]
     }
 ]
